@@ -17,7 +17,7 @@ int BTmin(int BT[], int Flag[], int n, int track, int t, int storeInd, int ind, 
                 ind = k;
             }
         }
-    }
+        }
     return ind;
 }
 
