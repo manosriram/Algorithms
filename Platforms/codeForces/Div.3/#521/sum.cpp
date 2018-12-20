@@ -31,11 +31,8 @@ int sumDig(int res)
         sum = sumDig(sum);
     }
 
-    // if (count(sum) > 0)
-    // {
-    //     return sum;
-    // }
-    return sum;
+    else return sum;
+
 }
 
 int main()
