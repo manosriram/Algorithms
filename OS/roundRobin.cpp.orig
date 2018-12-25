@@ -62,21 +62,15 @@ int btSum(int BT[], int n)
 
 int leastAT(int AT[], int n)
 {
-    int k, ind;
+    int k;
     int min = AT[0];
     for (k = 0; k < n; k++)
     {
         if (AT[k] < min)
-        {
             min = AT[k];
-<<<<<<< HEAD
-            ind = k;
-        }
-=======
 >>>>>>> fc94caf21c8d5d9437ef8e713eebf493fad47015
->>>>>>> dc00726aa3c71d84514b4f7bd654d414b68c610c
     }
-    return ind;
+    return min;
 }
 
 <<<<<<< HEAD
@@ -120,7 +114,7 @@ int main()
 {
     int n, timeQuantum;
     int t, i, j;
-    int cur;
+    int btAdd, cur;
 
     cin >> n >> timeQuantum;
 
@@ -132,37 +126,28 @@ int main()
     int *CT = new int[n];
     int *WT = new int[n];
     int *TAT = new int[n];
-    int *inQ = new int[n];
+    int *Completed = new int[n];
 
     for (t = 0; t < n; t++)
     {
         cin >> P[t] >> AT[t] >> BT[t];
+        BT1[t] = BT[t];
         Flag[t] = 0;
-        inQ[t] = 0;
+        Completed[t] = 0;
     }
+    int cnt = 0;
+    btAdd = btSum(BT, n);
+    int track = leastAT(AT, n);
+    int completedCount = 1;
 
-    int track = AT[leastAT(AT, n)];
-    int btAdd = btSum(BT, n);
-    int ind;
-    int rem = n;
-
-    while (rem > 0 || btAdd > 0)
+    while (btAdd > 0)
     {
-        for (t = 0; t < n; t++)
+        for (i = 0; i < n; i++)
         {
-            if (!Flag[t] && !inQ[t])
+            if (!Flag[i])
             {
-                if (AT[t] <= track)
+                if (!Completed[i])
                 {
-<<<<<<< HEAD
-                    insert(P[t]);
-                    inQ[t] = 1;
-                }
-            }
-        }
-        int cur = q[front];
-        for (t = 0; t < n; t++)
-=======
                     if (AT[i] <= track)
                     {
                         insert(P[i]);
@@ -207,58 +192,47 @@ int main()
 
 =======
         for (int k = 1; k < n; k++)
->>>>>>> dc00726aa3c71d84514b4f7bd654d414b68c610c
         {
-            if (P[t] == cur)
+            for (t = 0; t < n; t++)
             {
-                ind = t;
-                break;
-            }
-        }
-        if (BT[ind] > 0)
-        {
-            track += timeQuantum;
-            cout << track << " ";
-            btAdd -= timeQuantum;
-            BT[ind] -= timeQuantum;
-        }
-        else
-        {
-            track += BT[ind];
-            cout << track << " ";
-            btAdd -= BT[ind];
-            BT[ind] -= BT[ind];
-            Flag[ind] = 1;
-            inQ[ind] = 0;
-            // front++;
-        }
-
-        for (i = 0; i < n; i++)
-        {
-            if (!Flag[i] && inQ[i])
-            {
-                if (AT[i] <= track)
+                if (Completed[t] == k)
                 {
-                    insert(P[i]);
-                    inQ[i] = 1;
+                    insert(P[t]);
+                    Completed[t] = 0;
                 }
             }
         }
-        if (BT[cur] > 0)
+        completedCount = 1;
+
+        for (t = front; t <= rear; t++)
         {
-            insert(P[ind]);
-            inQ[ind] = 1;
+            cur = q[t];
+
+            if (BT[cur - 1] > timeQuantum)
+            {
+                track += timeQuantum;
+                btAdd -= timeQuantum;
+                BT[cur - 1] -= timeQuantum;
+            }
+            else
+            {
+                track += BT[cur - 1];
+                CT[cur - 1] = track;
+                btAdd -= BT[cur - 1];
+                BT[cur - 1] = 0;
+                Flag[cur - 1] = 1;
+            }
+            if (BT[cur - 1] > 0)
+            {
+                Completed[cur - 1] = completedCount;
+                completedCount++;
+            }
+
             front++;
-        }
-        else
-        {
-            inQ[ind] = 1;
-            front++;
+            // cnt++;
+            // cout << track << " ";
         }
     }
-<<<<<<< HEAD
-}
-=======
     float wtSum = 0, tatSum = 0;
     for (t = 0; t < n; t++)
     {
@@ -279,4 +253,3 @@ int main()
     // cout << AWT << " " << ATAT << endl;
 >>>>>>> fc94caf21c8d5d9437ef8e713eebf493fad47015
 }
->>>>>>> dc00726aa3c71d84514b4f7bd654d414b68c610c
