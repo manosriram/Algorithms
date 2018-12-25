@@ -34,21 +34,24 @@ int btSum(int BT[], int n)
 
 int leastAT(int AT[], int n)
 {
-    int k;
+    int k, ind;
     int min = AT[0];
     for (k = 0; k < n; k++)
     {
         if (AT[k] < min)
+        {
             min = AT[k];
+            ind = k;
+        }
     }
-    return min;
+    return ind;
 }
 
 int main()
 {
     int n, timeQuantum;
     int t, i, j;
-    int btAdd, cur;
+    int cur;
 
     cin >> n >> timeQuantum;
 
@@ -60,94 +63,81 @@ int main()
     int *CT = new int[n];
     int *WT = new int[n];
     int *TAT = new int[n];
-    int *Completed = new int[n];
+    int *inQ = new int[n];
 
     for (t = 0; t < n; t++)
     {
         cin >> P[t] >> AT[t] >> BT[t];
-        BT1[t] = BT[t];
         Flag[t] = 0;
-        Completed[t] = 0;
+        inQ[t] = 0;
     }
-    int cnt = 0;
-    btAdd = btSum(BT, n);
-    int track = leastAT(AT, n);
-    int completedCount = 1;
 
-    while (btAdd > 0)
+    int track = AT[leastAT(AT, n)];
+    int btAdd = btSum(BT, n);
+    int ind;
+    int rem = n;
+
+    while (rem > 0 || btAdd > 0)
     {
-        for (i = 0; i < n; i++)
+        for (t = 0; t < n; t++)
         {
-            if (!Flag[i])
+            if (!Flag[t] && !inQ[t])
             {
-                if (!Completed[i])
-                {
-                    if (AT[i] <= track)
-                    {
-                        insert(P[i]);
-                    }
-                }
-            }
-        }
-
-        for (int k = 1; k < n; k++)
-        {
-            for (t = 0; t < n; t++)
-            {
-                if (Completed[t] == k)
+                if (AT[t] <= track)
                 {
                     insert(P[t]);
-                    Completed[t] = 0;
+                    inQ[t] = 1;
                 }
             }
         }
-        completedCount = 1;
-
-        for (t = front; t <= rear; t++)
+        int cur = q[front];
+        for (t = 0; t < n; t++)
         {
-            cur = q[t];
+            if (P[t] == cur)
+            {
+                ind = t;
+                break;
+            }
+        }
+        if (BT[ind] > 0)
+        {
+            track += timeQuantum;
+            cout << track << " ";
+            btAdd -= timeQuantum;
+            BT[ind] -= timeQuantum;
+        }
+        else
+        {
+            track += BT[ind];
+            cout << track << " ";
+            btAdd -= BT[ind];
+            BT[ind] -= BT[ind];
+            Flag[ind] = 1;
+            inQ[ind] = 0;
+            // front++;
+        }
 
-            if (BT[cur - 1] > timeQuantum)
+        for (i = 0; i < n; i++)
+        {
+            if (!Flag[i] && inQ[i])
             {
-                track += timeQuantum;
-                btAdd -= timeQuantum;
-                BT[cur - 1] -= timeQuantum;
+                if (AT[i] <= track)
+                {
+                    insert(P[i]);
+                    inQ[i] = 1;
+                }
             }
-            else
-            {
-                track += BT[cur - 1];
-                CT[cur - 1] = track;
-                btAdd -= BT[cur - 1];
-                BT[cur - 1] = 0;
-                Flag[cur - 1] = 1;
-            }
-            if (BT[cur - 1] > 0)
-            {
-                Completed[cur - 1] = completedCount;
-                completedCount++;
-            }
-
+        }
+        if (BT[cur] > 0)
+        {
+            insert(P[ind]);
+            inQ[ind] = 1;
             front++;
-            // cnt++;
-            // cout << track << " ";
+        }
+        else
+        {
+            inQ[ind] = 1;
+            front++;
         }
     }
-    float wtSum = 0, tatSum = 0;
-    for (t = 0; t < n; t++)
-    {
-        TAT[t] = CT[t] - AT[t];
-        WT[t] = TAT[t] - BT1[t];
-        tatSum += TAT[t];
-        wtSum += WT[t];
-    }
-    float AWT, ATAT;
-
-    AWT = wtSum / n;
-    ATAT = tatSum / n;
-
-    front = 0;
-    for (t = 0; t < n; t++)
-        cout << CT[t] << " ";
-
-    // cout << AWT << " " << ATAT << endl;
 }
