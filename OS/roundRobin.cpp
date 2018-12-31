@@ -1,5 +1,4 @@
 #include <iostream>
-<<<<<<< HEAD
 #define maxQ 500
 using namespace std;
 
@@ -69,7 +68,6 @@ int leastAT(int AT[], int n)
         if (AT[k] < min)
         {
             min = AT[k];
-<<<<<<< HEAD
             ind = k;
         }
 =======
@@ -79,7 +77,6 @@ int leastAT(int AT[], int n)
     return ind;
 }
 
-<<<<<<< HEAD
 int getBtSum(int BT[], int n) {
     int k,sum=0;
     for (k=0;k<n;k++) sum += BT[k];
@@ -154,7 +151,6 @@ int main()
             {
                 if (AT[t] <= track)
                 {
-<<<<<<< HEAD
                     insert(P[t]);
                     inQ[t] = 1;
                 }
@@ -172,7 +168,6 @@ int main()
             }
         }
 
-<<<<<<< HEAD
         int cur = q[front];
         if (BT[cur] > timeQuantum) {
             track += timeQuantum;
@@ -256,7 +251,6 @@ int main()
             front++;
         }
     }
-<<<<<<< HEAD
 }
 =======
     float wtSum = 0, tatSum = 0;
