@@ -27,7 +27,6 @@ int main()
     {
         if (calDig(num))
             cnt++;
-
         if (calDig(num) && cnt == n)
         {
             cout << num << endl;
