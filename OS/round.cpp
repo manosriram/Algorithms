@@ -103,7 +103,7 @@ int main()
     AWT = sumWT / n;
     ATAT = sumTAT / n;
 
-    cout << "ProcessID" << '\t' << "A.T" << '\t' << "B.T" << '\t' << "C.T" << '\t' << "T.A.T" << '\t' << "W.T" << endl;
+    cout << "ProcessID" << '\t' << "A.T" << '\t' << "B.T" << '\t' << "C.T" << '\t' << "T.A.T" << '\t' << "W.T" << '\n';
     for (t = 0; t < n; t++)
     {
         cout << P[t] << '\t' << '\t' << AT[t] << '\t' << BT1[t] << '\t' << CT[t] << '\t' << TAT[t] << '\t' << WT[t] << '\n';
