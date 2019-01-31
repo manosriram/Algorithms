@@ -1,4 +1,3 @@
-
 var socket = io.connect("http://localhost:5000");
 
 // Cookie..
@@ -41,8 +40,7 @@ function onC() {
     message: message.value,
     handle: handle
   });
-    message.value = "";
-    
+  message.value = "";
 }
 
 message.addEventListener("keypress", () => {
