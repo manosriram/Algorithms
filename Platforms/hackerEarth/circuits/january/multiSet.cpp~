@@ -1,0 +1,24 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main() {
+  int n,t;
+  int sum=0;
+  cin >> n;
+  int *a = new int[n];
+  int *b = new int[n];
+
+  for (t=0;t<n;t++) {
+    cin >> a[t];
+  }
+  for (t=0;t<n;t++) {
+    cin >> b[t];
+  }
+  for (t=0;t<n;t++) {
+
+    sum += abs(a[t]-b[t]);
+  }
+  cout << sum << '\n';
+
+}
