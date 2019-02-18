@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+int sumNum(int a[],int n) {
+  int k,sum=0;
+  for (k=0;k<n;k++)
+    sum += a[k];
+
+  return sum;
+}
+
+
+int main() {
+  int x,t,sum=0,ind=0,temp;
+  int a[4];
+
+  for (t=0;t<4;t++) {
+    cin >> temp;
+    if (temp >= 0 && temp <= 9){
+    cin >> a[t];
+    ind++;
+    }
+    else continue;
+  }
+
+  sum = sumNum(a,ind);
+  ind=0;
+  while (sum % x !=0) {
+    sum++;
+    ind++;
+  }
+  cout << ind << endl;
+
+}
