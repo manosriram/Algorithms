@@ -57,9 +57,10 @@ int main()
     {
         for (j = 0; j < 3; j++)
         {
-            Need[i][j] = Max[i][j] - Available[i];
+            Need[i][j] = Max[i][j] - Available[j];
         }
     }
+
     int index = 0, store = 0;
     while (!checkStatus(n, Flag))
     {
