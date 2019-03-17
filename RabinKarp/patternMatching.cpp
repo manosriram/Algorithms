@@ -1,26 +1,62 @@
 #include <iostream>
 #include <math.h>
-#include <string.h>
-
+#define ll long long int
+#define prime 119
 using namespace std;
 
-int hashFunction(char a[], int stInd, int endIn)
+ll createHashValue(string str, int n)
 {
-    int count = (endIn - stInd), hash = 0;
-    for (int t = stInd; t < endIn; t++)
+    ll result = 0;
+    for (int i = 0; i < n; i++)
     {
-        cout << count << '\n';
-        hash += (int(a[t]) - 97) * pow(10, count - 1);
-        count--;
-        cout << " hash : " << hash << endl;
+        result += (ll)(str[i] * (ll)pow(prime, i));
     }
-    return (hash % 1000000009);
+    return result;
+}
+
+ll recalculateHash(string str, int oldIndex, int newIndex, ll oldHash, int patLength)
+{
+    ll newHash = oldHash - str[oldIndex];
+    newHash /= prime;
+    newHash += (ll)(str[newIndex] * (ll)(pow(prime, patLength - 1)));
+    return newHash;
+}
+
+bool checkEqual(string str1, string str2, int start1, int end1, int start2, int end2)
+{
+    if (end1 - start1 != end2 - start2)
+    {
+        return false;
+    }
+    while (start1 <= end1 && start2 <= end2)
+    {
+        if (str1[start1] != str2[start2])
+        {
+            return false;
+        }
+        start1++;
+        start2++;
+    }
 }
 
 int main()
 {
-    char a[100], pattern[100];
-    cin >> pattern;
+    string str = "ababcabdab";
+    string pat = "abd";
 
-    cout << hashFunction(pattern, 0, strlen(pattern)) << endl;
+    ll patHash = createHashValue(pat, pat.length());
+    ll strHash = createHashValue(str, pat.length());
+    for (int i = 0; i < str.length() - pat.length(); i++)
+    {
+        if (patHash == strHash && checkEqual(str, pat, i, i + pat.length(), 0, pat.length() - 1))
+        {
+            cout << i << endl;
+            break;
+        }
+        if (i < str.length() - pat.length())
+        {
+            strHash = recalculateHash(str, i, i + pat.length(), strHash, pat.length());
+        }
+    }
+    return 0;
 }
