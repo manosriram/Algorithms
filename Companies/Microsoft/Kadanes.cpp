@@ -21,5 +21,5 @@ int main()
             sum = 0;
     }
 
-    cout << sum << endl;
+    cout << maxEnd << endl;
 }
