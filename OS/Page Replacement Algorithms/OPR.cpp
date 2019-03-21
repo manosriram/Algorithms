@@ -55,7 +55,6 @@ int main()
 
     int *a = new int[pages];
     int *frame = new int[frames];
-    int **block = new int *[frames];
     int *check = new int[frames];
 
     for (t = 0; t < pages; t++)
@@ -73,8 +72,6 @@ int main()
     {
         if (t < frames)
         {
-            if (checkPageHit(frame, a[t], frames))
-                pageHits++;
             frame[t] = a[t];
             continue;
         }
@@ -97,7 +94,7 @@ int main()
             }
         }
     }
-
+    cout << pageHits;
     cout << "Page Hits : " << pageHits << endl;
     cout << "Page Faults : " << (pages - pageHits) << endl;
     cout << "Hit Ratio : " << float(float(pageHits / pages)) * 100 << "%" << endl;
