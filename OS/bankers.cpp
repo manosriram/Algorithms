@@ -57,19 +57,11 @@ int main()
         }
     }
 
-    for (t = 0; t < n; t++)
-    {
-
-        for (int j = 0; j < n; j++)
-        {
-            cout << Need[t][j] << " ";
-        }
-        cout << endl;
-    }
-
+    int counter = 0, unsafe = 0;
     static int store;
     while (!checkStatus(n, Finish))
     {
+        counter++;
         if (index == n)
             index = 0;
 
@@ -86,7 +78,16 @@ int main()
             }
         }
         index++;
+        if (counter > n * 2)
+        {
+            unsafe = 1;
+            cout << "Unsafe State.." << '\n';
+            break;
+        }
     }
-    for (t = 0; t < n; t++)
-        cout << seq[t] << " ";
+    if (!unsafe)
+    {
+        for (t = 0; t < n; t++)
+            cout << seq[t] << " ";
+    }
 }

@@ -14,6 +14,7 @@ bool checkStatus(int n, int Flag[])
 
 int main()
 {
+    int unsafe = 0, counter = 0;
     int n, t;
     int i, j;
     cin >> n;
@@ -65,13 +66,47 @@ int main()
     int index = 0, store = 0;
     int ch;
 h:
-    cout << "1.No Request 2.Request" << endl;
-    cin >> ch;
-    switch (ch)
+    int p2, p1, status = 0, process;
+    cout << "Enter ProcessID : ";
+    cin >> p1;
+
+    for (int k = 0; k < n; k++)
     {
-    case 1:
+        if (P[k] == p1)
+        {
+            process = k;
+            break;
+        }
+    }
+
+    cout << "Enter Request Resources : ";
+    cin >> req[0] >> req[1] >> req[2];
+
+    if (req[0] <= Need[process][0] && req[1] <= Need[process][1] && req[2] <= Need[process][2])
+    {
+        if (req[0] <= Available[0] && req[1] <= Available[1] && req[2] <= Available[2])
+        {
+            status = 1;
+            cout << "Executing.." << endl;
+            for (t = 0; t < 3; t++)
+            {
+                Available[t] -= req[t];
+                Alloc[process][t] += req[t];
+                Need[process][t] -= req[t];
+            }
+        }
+    }
+
+    if (!status)
+    {
+        cout << "More Resources Required.." << endl;
+        exit(0);
+    }
+    else
+    {
         while (!checkStatus(n, Flag))
         {
+            counter++;
             if (index == n)
                 index = 0;
 
@@ -89,71 +124,17 @@ h:
                 }
             }
             index++;
-        }
-
-        break;
-    case 2:
-        int p2, p1, status = 0, process;
-        cout << "Enter ProcessID : ";
-        cin >> p1;
-
-        for (int k = 0; k < n; k++)
-        {
-            if (P[k] == p1)
+            if (counter > n * 2)
             {
-                process = k;
-                break;
+                cout << "Unsafe State." << '\n';
+                unsafe = 1;
             }
         }
-
-        cout << "Enter Request Resources : ";
-        cin >> req[0] >> req[1] >> req[2];
-
-        if (req[0] <= Need[process][0] && req[1] <= Need[process][1] && req[2] <= Need[process][2])
-        {
-            if (req[0] <= Available[0] && req[1] <= Available[1] && req[2] <= Available[2])
-            {
-                status = 1;
-                cout << "Executing.." << endl;
-                for (t = 0; t < 3; t++)
-                {
-                    Available[t] -= req[t];
-                    Alloc[process][t] += req[t];
-                    Need[process][t] -= req[t];
-                }
-            }
-        }
-
-        if (!status)
-        {
-            cout << "More Resources Required.." << endl;
-            goto h;
-        }
-        else
-        {
-            while (!checkStatus(n, Flag))
-            {
-                if (index == n)
-                    index = 0;
-
-                if (!Flag[index])
-                {
-                    if (Need[index][0] <= Available[0] && Need[index][1] <= Available[1] && Need[index][2] <= Available[2])
-                    {
-                        for (t = 0; t < 3; t++)
-                        {
-                            Available[t] += Alloc[index][t];
-                        }
-                        Flag[index] = 1;
-                        seq[store] = index;
-                        store++;
-                    }
-                }
-                index++;
-            }
-        }
-        break;
     }
-    for (int l = 0; l < n; l++)
-        cout << seq[l] << " ";
+
+    if (!unsafe)
+    {
+        for (int l = 0; l < n; l++)
+            cout << seq[l] << " ";
+    }
 }
