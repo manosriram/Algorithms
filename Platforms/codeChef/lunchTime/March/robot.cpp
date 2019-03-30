@@ -20,8 +20,9 @@ int main()
 
         cin >> temp;
         store[(x % dirCount)] = x;
+        c
 
-        for (int k = 0; k < dirCount; k++)
+            for (int k = 0; k < dirCount; k++)
         {
             if (temp[k] == 'L')
             {

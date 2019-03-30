@@ -1,5 +1,4 @@
 #include <iostream>
-// #define INT_MIN -2147483648
 using namespace std;
 
 int main()
@@ -19,14 +18,7 @@ int main()
 
         for (int t = 0; t < N; t++)
         {
-            // if (t > (N / K))
-            // {
-            //     if (a[t] > max)
-            //         max = a[t];
-            // }
-            // else
-            // {
-            for (int j = t; j < N - t; j++)
+            for (int j = t; j < N; j++)
             {
                 sum += a[j];
                 j += K - 1;
@@ -34,7 +26,6 @@ int main()
             if (sum > max)
                 max = sum;
             sum = 0;
-            // }
         }
 
         cout << max << '\n';
