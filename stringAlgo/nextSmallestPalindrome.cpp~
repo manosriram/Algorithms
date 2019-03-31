@@ -1,0 +1,41 @@
+#include <iostream>
+#include <math.h>
+#define ll long long int
+using namespace std;
+
+ll getLength(ll n) {
+  ll count=0;
+  while (n > 0) {
+    count++;
+    n /= 10;
+  }
+  return count;
+}
+
+ll getNextSmallestPal(ll n) {
+  ll dup = n,temp=0;
+  int t;
+  ll len = getLength(dup);
+  ll first;
+  
+  for (t=0;t<(len/2);t++) {
+    if (!t) first = n % 10;
+
+    temp += (n % 10) * pow(10,t);
+    n /= 10;
+  }
+
+  cout << " Temp : " << temp << endl;
+  cout << " n : " << n << endl;
+  
+}
+
+
+int main() {
+
+  ll n;
+  cin >> n;
+
+  getNextSmallestPal(n);
+  
+}
