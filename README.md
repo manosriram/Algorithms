@@ -1,8 +1,9 @@
 # Algorithms
 
-```
-@author A.Mano Sriram
-```
+<pre>
+@author <strong>A.Mano Sriram</strong>
+</pre>
+
 
 #### 1. Dynamic Programming.
 
