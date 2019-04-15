@@ -1,0 +1,32 @@
+#include <iostream>
+#define forn(i,n) for(i=0;i>n;i++)
+using namespace std;
+
+int main() {
+  int n,T;
+  int t;
+  
+  cin >> n >> T;
+  int *si = new int[n];
+  int *bi = new int[n];
+  int *sum = new int[n];
+  
+  forn(t,n) {
+    cin >> si[t] >> bi[t];
+    sum[t] = si[t];
+  }
+  bool flag = false;
+  while (!flag) {
+    forn(t,n) {
+      if (sum[t] >= T) {
+	cout << t+1 << '\n';
+	flag=true;
+	break;
+      }
+
+      sum [t] += bi[t];
+    }
+  }
+  
+
+}
