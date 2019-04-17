@@ -1,0 +1,17 @@
+#include <iostream>
+#define ll long long int
+#define forn(t,n) for(t=0;t<n;t++)
+using namespace std;
+
+ll getIndex(ll a, ll b, ll c) {
+  if (a > b && a > c) return 0;
+  if (b > a && b > c) return 2;
+  return 3;
+  
+}
+
+int main() {
+  ll a,b,c;
+  cin >> a >> b >> c;
+  
+}
