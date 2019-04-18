@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string.h>
+#include <math.h>
+#define forn(t,n) for(t=0;t<n;t++)
+using namespace std;
+
+void clearArray(int arr[], int n) {
+  int n;
+  forn(t,n) arr[t] = -1;
+}
+
+
+int main() {
+  int T,t;
+  cin >> T;
+  char *str = new char[100];
+  int *a = new int[100];
+  
+  while (T--) {
+    cin >> str;
+    clearArray(a,100);
+    int len = strlen(str);
+    
+    forn(t,n-1) {
+      a[t] = abs((str[t] - 'a') - str[t+1] - 'a' ));
+    }
+  }
+
+}
