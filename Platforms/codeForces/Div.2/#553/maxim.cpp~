@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string.h>
+#define forn(t,n) for(t=0;t<n;t++)
+using namespace std;
+
+int main() {
+  int n;
+
+  cin >> n;
+  char *st = new char[n];
+  cin >> st;
+
+  int len = n;
+  int min = INT_MAX;
+
+  int i=0;
+  int index;
+  while (len >= 4) {
+    if (str[i]-'a' < min) {
+      min = str[i] - 'a';
+      index = i;
+    }
+    i++;
+    len++;
+  }
+
+  cout << index << '\n';
+  
+}
