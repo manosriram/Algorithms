@@ -11,8 +11,8 @@
 - [Number of Ways to Reach Destination.](https://github.com/manosriram/Algorithms/blob/master/Dynamic%20Programming/numberOfWays.cpp)
 
 #### 2. Recursion.
-
 - [Print All Permutations of a String.](https://github.com/manosriram/Algorithms/blob/master/Recursion/permuteString.cpp)
+- [Print All Permutations of a String Without Duplicates.](https://github.com/manosriram/Algorithms/blob/master/Recursion/permuteStringWithoutDuplicates.cpp)
 - [Palindrome.](https://github.com/manosriram/Algorithms/blob/master/Recursion/palindrome.cpp)
 
 #### 3. Sorting Algorithms.
