@@ -11,6 +11,8 @@ bool pal(int i, int j, char str[])
     {
         return pal(i + 1, j - 1, str);
     }
+    else
+        return 0;
 }
 
 int main()
