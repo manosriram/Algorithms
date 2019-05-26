@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <math.h>
+#define mod 1000000007
 #define ll long long
 using namespace std;
 
@@ -28,7 +29,7 @@ int main()
     }
 
     if (k - sum > 0)
-        rem = k - sum;
+        rem = (k - sum) % mod;
 
     for (ll t=1;t<=n;t++) {
         if (b[t] == (a[mid] + k)) {
@@ -42,5 +43,5 @@ int main()
     }
     ll res;
     (k - sum > 0) ? res = sum - rem : res = sum - k;
-    cout << ind << " " << res << endl;
+    cout << ind << " " << res << '\n';
 }
