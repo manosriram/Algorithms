@@ -8,16 +8,14 @@ int findMax(int a, int b)
 
 int maxContiguousSum(int a[], int n)
 {
-    int currentHigh = a[0], t, allTimeHigh = INT_MIN;
+    int highSoFar = a[0], currentHigh = a[0], t, allTimeHigh = INT_MIN;
 
     for (t = 1; t <= n; t++)
     {
-        currentHigh = findMax((a[t - 1] + a[t]), a[t]);
-
-        if (currentHigh > allTimeHigh)
-            allTimeHigh = currentHigh;
+        currentHigh = findMax((currentHigh + a[t]), a[t]);
+        highSoFar = findMax(highSoFar, currentHigh);
     }
-    return allTimeHigh;
+    return highSoFar;
 }
 
 int main()
