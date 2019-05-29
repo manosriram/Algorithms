@@ -1,19 +1,56 @@
+// Set 1
 abcdefghijklmnopqurtuvwxyz
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 1234567890
 
+// Set 2
 Ha HaHa
 
 MetaCharacters (Need to be escaped):
 .[{()\^$|?*+
 
+// Set 3
 coreyms.com
 
+// Set 4
 321-555-4321
 123.555.1234
 
+// Set 5
 Mr. Schafer
 Mr Smith
 Ms Davis
+Ms. Michelle
 Mrs. Robinson
+Mrs Cindy
 Mr. T
+
+Solutions for all the Sets.
+
+Regex for Set 1:
+[a-z]{26}\n[A-z]{26}\n[0-9]+
+
+Regex for Set 2:
+[\bHa\b] -> Word Boundaries on both the sides.
+[\bHa] -> Word Boundary on only one side.
+
+Regex for Set 3:
+[a-z]+\.com
+
+Regex for Set 4:
+\d{3}(-|.)\d{3}(-|.)\d{4}
+
+Regex for Set 5:
+
+1. All Mr and Mr. Words.
+Mr\.?\s[A-Z](\w+)*
+
+2. All Ms and Ms. Words
+Ms\.?\s\w+
+
+3. All Mrs and Mrs. Words
+Mrs\.?\s\w+
+
+4. All Words in the Set.
+M[a-z]+\.?\s\w+
+
