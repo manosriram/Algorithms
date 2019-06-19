@@ -1,23 +1,26 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include "helperFile.h"
 using namespace std;
+
+/*
+    HelperFile
+        - readData(string filePath) -> returns vector with read data.
+        - writeData(string filePath, bool newLine, bool spacedAfter) -> returns bool
+        - truncateFile(string filePath) -> void function.
+        - removeFile(char filePath[]) -> returns bool
+
+*/
 
 int main()
 {
-    ofstream myFile;
-    ifstream fileReader;
-    char arr[100];
+    vector<string> vec;
+    HelperFile helper;
+    // vec = helper.readData("hello.txt");
+    // helper.writeData("hello.txt", true, false);
 
-    myFile.open("hello.txt", std::ios::app);
-
-    cin.getline(arr, 100);
-
-    myFile << "\n"
-           << arr;
-    myFile.close();
-
-    fileReader.open("hello.txt");
-
-    fileReader.getline(arr, 100, std::ios::app);
-    cout << arr << endl;
+    helper.truncateFile("hello.txt");
+    if (!helper.removeFile("hello.txt"))
+        cout << "Error Deleting file.." << endl;
 }
