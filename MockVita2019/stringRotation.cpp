@@ -1,8 +1,5 @@
 #include <iostream>
 #include <string.h>
-#define forn(t, n) for (int t = 0; t < n; t++)
-#define maxLength 30
-#define ll long long
 using namespace std;
 string in;
 
@@ -14,7 +11,7 @@ bool isSubString(string s1, string s2) {
     return false;
 }
 
-char rotateRight(int magnitude)
+char rotateRight(long long int magnitude)
 {
     string temp;
     temp = in.substr(0, in.length()-magnitude);
@@ -23,7 +20,7 @@ char rotateRight(int magnitude)
     return in[0];
 }
 
-char rotateLeft(int magnitude)
+char rotateLeft(long long int magnitude)
 {
     string temp;
     temp = in.substr(0, magnitude);
@@ -34,7 +31,7 @@ char rotateLeft(int magnitude)
 
 int main()
 {
-    ll T, magnitude;
+    long long int T, magnitude;
     string res, originalString;
     char dir;
     cin >> in >> T;
@@ -47,11 +44,11 @@ int main()
         {
             res += rotateLeft(magnitude);
         }
-        else
+        if (dir == 'R')
         {
             res += rotateRight(magnitude);
         }
     }
-
-    (isSubString(originalString, res)) ? cout << "YES" << '\n' : cout << "NO" << '\n';
+    (isSubString(originalString, res)) ? cout << "YES" : cout << "NO";
+  return 0;
 }
