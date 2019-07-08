@@ -3,17 +3,17 @@
 #include <algorithm>
 #include "Misc.h"
 #include "unordered_set"
-using namespace std;
+#define sd std
 
 int main() {
-    unordered_set<string> dictionary = {"stop", "pots", "tops", "opts", "post", "spot"};
+    sd::unordered_set<sd::string> dictionary = {"stop", "pots", "tops", "opts", "post", "spot"};
 
-    string word = "stop";
+    sd::string word = "stop";
 
-    sort(word.begin(), word.end());
+    sd::sort(word.begin(), word.end());
 
     do {
-        cout << word << (dictionary.count (word) ? " Is a Word !\n" : "\n");
+        sd::cout << word << (dictionary.count (word) ? " Is a Word !\n" : "\n");
     } while (next_permutation(word.begin(), word.end()));
 
     return 0;
