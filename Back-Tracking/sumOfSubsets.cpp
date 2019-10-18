@@ -5,11 +5,11 @@ int n = 6, m = 30, sum = 0;
 vector<int> v;
 
 bool isSubsetSum(int currentSum, int remainingSum, int in) {
-    if (currentSum == m)
-        return true;
-
     if (in > (n - 1) || currentSum > m)
         return false;
+
+    if (currentSum == m)
+        return true;
 
     return (isSubsetSum(currentSum + v[in], remainingSum - v[in], in + 1) || isSubsetSum(currentSum, remainingSum - v[in], in + 1));
 }
