@@ -55,7 +55,7 @@ bool Solve(int board[N][N], int col) {
     return false;
 }
 
-void showPossibleLegalPostitions() {
+void showPossibleLegalPositions() {
     int board[N][N] = {
         {0, 0, 0, 0},
         {0, 0, 0, 0},
@@ -72,5 +72,5 @@ void showPossibleLegalPostitions() {
 }
 
 int main() {
-    showPossibleLegalPostitions();
+    showPossibleLegalPositions();
 }
