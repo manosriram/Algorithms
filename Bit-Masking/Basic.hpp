@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+bool powerOf2(int a) { return ((a & (a - 1)) == 0); }
+
 void printBinaryRep(int a) {
     string temp = std::to_string((a & 1));
     while (a) {
