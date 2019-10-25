@@ -1,5 +1,17 @@
+#include <math.h>
 #include <iostream>
 using namespace std;
+
+void printBinaryRep(int a) {
+    string temp = std::to_string((a & 1));
+    while (a) {
+        a = a >> 1;
+        temp = std::to_string(a & 1) + temp;
+    }
+    cout << temp;
+    cout << endl;
+    return;
+}
 
 int rightShiftN(int a, int n) { return (a >> n); }
 
