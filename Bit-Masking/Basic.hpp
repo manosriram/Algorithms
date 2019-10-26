@@ -2,6 +2,19 @@
 #include <iostream>
 using namespace std;
 
+int reverseBinary(int a) {
+    int revA = a, s = sizeof(a);
+
+    while (a) {
+        revA <<= 1;
+        revA |= (a & 1);
+        a >>= 1;
+        --s;
+    }
+    revA <<= s;
+    return revA;
+}
+
 bool powerOf2(int a) { return ((a & (a - 1)) == 0); }
 
 void printBinaryRep(int a) {
