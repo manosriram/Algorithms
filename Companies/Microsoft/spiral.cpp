@@ -11,8 +11,8 @@ int main() {
             ++c;
         }
     }
-    
-    int fR = 0, fC = 0, lR = n-1, lC = n-1; 
+
+    int fR = 0, fC = 0, lR = n-1, lC = n-1;
     int t;
 
     while (fC < lC) {
@@ -27,13 +27,13 @@ int main() {
         --lC;
 
         for (t=lC;t>=fC;--t)
-                cout << a[lR][t] << " ";
-        
+            cout << a[lR][t] << " ";
+
         --lR;
 
         for (t=lR;t>=fR;--t)
             cout << a[t][fC] << " ";
-        ++fC; 
+        ++fC;
     }
 
 }
