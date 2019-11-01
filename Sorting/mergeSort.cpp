@@ -1,8 +1,7 @@
 #include <iostream>
 using namespace std;
 
-void merge(int a[], int low, int mid, int high)
-{
+void merge(int a[], int low, int mid, int high) {
     int i = 0, j = 0, k = 1;
 
     int n1 = (mid - low) + 1, n2 = high - mid;
@@ -15,7 +14,7 @@ void merge(int a[], int low, int mid, int high)
         R[j] = a[mid + j + 1];
 
     i = 0, j = 0, k = low;
-    
+
     while (i < n1 && j < n2)
     {
         if (L[i] <= R[j])
@@ -30,20 +29,18 @@ void merge(int a[], int low, int mid, int high)
         }
     }
 
-    
+
     for (;i<n1;i++)
         a[k++] = L[i];
 
     for (;j<n2;j++)
         a[k++] = R[j];
-    
+
     return;
 }
 
-void mergeSort(int a[], int low, int high)
-{
-    if (low < high)
-    {
+void mergeSort(int a[], int low, int high) {
+    if (low < high) {
         int mid = (low + high) / 2;
         mergeSort(a, low, mid);
         mergeSort(a, mid + 1, high);
@@ -51,8 +48,7 @@ void mergeSort(int a[], int low, int high)
     }
 }
 
-int main()
-{
+int main() {
     int a[] = {12, 11, 13, 5, 6, 7};
     int n = sizeof(a) / sizeof(a[0]);
     mergeSort(a, 0, n - 1);

@@ -9,11 +9,11 @@ int partition(int a[], int low, int high) {
         do {
             ++i;
         } while(a[i] <= pivot);
-        
+
         do {
             --j;
         }  while(a[j] > pivot);
-        
+
         if (i < j)
             swap(a[i], a[j]);
     }
@@ -38,7 +38,7 @@ int main() {
     int n = sizeof(a)/sizeof(a[0]);
 
     quickSort(a, 0, n);
-    
+
     for (int t=0;t<n;++t)
         cout << a[t] << " ";
 }
