@@ -1,34 +1,30 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+#include <numeric>
 using namespace std;
-int n = 6, m = 10, sum = 0;
-vector<int> v;
+static int n, targetSum;
 
-bool isSubsetSum(int currentSum, int remainingSum, int in) {
-    if (in > (n - 1) || currentSum > m)
-        return false;
+bool sumOfSubsets(int a[], int currentSum, int currentIndex, int remainingSum) {
+    currentSum += a[currentIndex];
 
-    if (currentSum == m) {
-        cout << "HIT!"
-             << " ";
+    if (currentSum == targetSum)
         return true;
-    }
 
-    return (isSubsetSum(currentSum + v[in], remainingSum - v[in], in + 1) || isSubsetSum(currentSum, remainingSum - v[in], in + 1));
+    else if (currentSum < targetSum)
+        sumOfSubsets(a, currentSum, currentIndex + 1, remainingSum - a[currentIndex]);
+
+    else
+        sumOfSubsets(a, currentSum - a[currentIndex], currentIndex + 1, remainingSum - a[currentIndex]);
+
 }
 
 int main() {
-    // v.__emplace_back(5);
-    // v.__emplace_back(10);
-    // v.__emplace_back(12);
-    // v.__emplace_back(13);
-    // v.__emplace_back(15);
-    v.__emplace_back(5);
-    v.__emplace_back(5);
-    v.__emplace_back(10);
+    int a[10] = {5, 4, 1, 6, 2};
+    n = sizeof(a)/sizeof(a[0]) + 1;
+    targetSum = 3;
+    int totalSum = accumulate(a, a+n, 0);
 
-    for (auto t : v)
-        sum += t;
+    cout << sumOfSubsets(a, 0, 0, totalSum);
 
-    cout << isSubsetSum(0, sum, 0) << endl;
 }
