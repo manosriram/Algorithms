@@ -11,7 +11,7 @@ void print() {
     }
 }
 
-bool allU(int &t, int &j) {
+bool isBoardFilled(int &t, int &j) {
     for (t=0;t<9;++t) {
         for (j=0;j<9;++j) {
             if (!board[t][j]) return false;
@@ -20,7 +20,7 @@ bool allU(int &t, int &j) {
     return true;
 }
 
-bool safe(int r, int c, int v) {
+bool isSafe(int r, int c, int v) {
     for (int t=0;t<9;++t)
         if (board[r][t] == v) return false;
 
@@ -39,10 +39,10 @@ bool safe(int r, int c, int v) {
 
 bool Solve() {
     int r, c;
-    if (allU(r, c)) return true;
+    if (isBoardFilled(r, c)) return true;
 
     for (int t=1;t<10;++t) {
-        if (safe(r, c, t)) {
+        if (isSafe(r, c, t)) {
             board[r][c] = t;
             if (Solve()) return true;
             board[r][c] = 0;
