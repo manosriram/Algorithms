@@ -36,9 +36,10 @@ bool is_substring(string a, string b, uint32_t hash) {
 }
 
 int main() {
-    string a = "abc", b = "xc";
+    string a = "abc", b = "abdz";
     uint32_t hash = hash_function(b);
     cout << hash << endl;
+    return 1;
 
     cout << is_substring(a, b, hash);
 }
